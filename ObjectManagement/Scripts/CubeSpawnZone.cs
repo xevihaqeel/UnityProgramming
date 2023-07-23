@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+//creates a cubeshaped spawn zone for objects
 public class CubeSpawnZone : SpawnZone{
 
     [SerializeField]

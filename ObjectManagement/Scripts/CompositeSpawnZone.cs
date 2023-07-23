@@ -11,6 +11,7 @@ public class CompositeSpawnZone : SpawnZone {
 
     int nextSequentialIndex; 
 
+    //Points in space for the spawned object(s) to appear
     public override Vector3 SpawnPoint{
         get{
             int index;
@@ -26,6 +27,8 @@ public class CompositeSpawnZone : SpawnZone {
         }
     }
 
+
+    //Chooses from the array of available shapes to be instantiated
     public override void ConfigureSpawn(Shape shape){
         if(overrideConfig){
             base.ConfigureSpawn(shape); 

@@ -8,21 +8,23 @@ using UnityEngine.UI;
 public class Game : PersistableObject {
 
 	const int saveVersion = 4;
-
+	//Creates field for inputing the object that creates shapes/objects that will populate world
 	[SerializeField] ShapeFactory shapeFactory;
 
+	//maps object creation/destruction, saving, loading and restarting to keys
 	[SerializeField] KeyCode createKey = KeyCode.C;
 	[SerializeField] KeyCode destroyKey = KeyCode.X;
 	[SerializeField] KeyCode newGameKey = KeyCode.N;
 	[SerializeField] KeyCode saveKey = KeyCode.S;
 	[SerializeField] KeyCode loadKey = KeyCode.L;
-
+	//Creates field for instering persistent storage object
 	[SerializeField] PersistentStorage storage;
-
+	//level count
 	[SerializeField] int levelCount;
-
+	//boolean to decide whether or not reseeding happens
 	[SerializeField] bool reseedOnLoad;
 
+	//sliders for "birth" and "death" rates for objects
 	[SerializeField] Slider creationSpeedSlider;
 	[SerializeField] Slider destructionSpeedSlider;
 
@@ -99,7 +101,7 @@ public class Game : PersistableObject {
 			DestroyShape();
 		}
 	}
-
+	//new game function
 	void BeginNewGame () {
 		Random.state = mainRandomState;
 		int seed = Random.Range(0, int.MaxValue) ^ (int)Time.unscaledTime;
@@ -114,7 +116,6 @@ public class Game : PersistableObject {
 		}
 		shapes.Clear();
 	}
-
 	IEnumerator LoadLevel (int levelBuildIndex) {
 		enabled = false;
 		if (loadedLevelBuildIndex > 0) {
@@ -129,7 +130,7 @@ public class Game : PersistableObject {
 		loadedLevelBuildIndex = levelBuildIndex;
 		enabled = true;
 	}
-
+	//shape creation function
 	void CreateShape () {
 		Shape instance = shapeFactory.GetRandom();
 		Transform t = instance.transform;
@@ -145,7 +146,7 @@ public class Game : PersistableObject {
 		instance.AngularVelocity = Random.onUnitSphere * Random.Range(0f, 90f);
 		shapes.Add(instance);
 	}
-
+	//shape destruction function
 	void DestroyShape () {
 		if (shapes.Count > 0) {
 			int index = Random.Range(0, shapes.Count);
@@ -155,7 +156,7 @@ public class Game : PersistableObject {
 			shapes.RemoveAt(lastIndex);
 		}
 	}
-
+	//game save function
 	public override void Save (GameDataWriter writer) {
 		writer.Write(shapes.Count);
 		writer.Write(Random.state);

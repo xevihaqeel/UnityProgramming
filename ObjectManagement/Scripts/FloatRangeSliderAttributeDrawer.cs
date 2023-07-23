@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-
+//Overrides the previously created Float Range Attributes
 [CustomPropertyDrawer(typeof(FloatRangeSliderAttribute))]
 public class FloatRangeSliderDrawer : PropertyDrawer {
     public override void OnGUI(

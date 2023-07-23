@@ -5,6 +5,7 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(FloatRange))]
 public class FloatRangeDrawer : PropertyDrawer {
     
+//Overrides the previously created Float Range Properties
 public override void OnGUI(Rect position, SerializedProperty property, GUIContent label){
     int originalIndentLevel = EditorGUI.indentLevel;
     float originalLabelWidth = EditorGUIUtility.labelWidth;

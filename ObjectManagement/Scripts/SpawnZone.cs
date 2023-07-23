@@ -4,20 +4,7 @@ using UnityEngine;
 
 public abstract class SpawnZone : PersistableObject{
     public abstract Vector3 SpawnPoint{ get; }
-    // public enum SpawnMovementDirection{
-    //     Forward,
-    //     Upward,
-    //     Outward,
-    //     Random
-    // }
 
-    // [SerializeField]
-    // SpawnMovementDirection spawnMovementDirection;
-
-    // // [SerializeField] float spawnSpeedMin, spawnSpeedMax;
-    // [SerializeField]
-    // FloatRange spawnSpeed;
-    // [SerializeField] float angluarVelMin, angularVelMax;
     [System.Serializable]
     public struct SpawnConfiguration{
         public enum MovementDirection{
